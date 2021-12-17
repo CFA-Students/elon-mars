@@ -4,20 +4,18 @@ const colors = require('tailwindcss/colors');
 console.log(colors.white);
 
 module.exports = {
-    content: ['./src/**/*.{html,ts,css,scss}'],
-    darkMode: 'class', // or 'media' or 'class'
-    theme: {
-        extend: {
-            cursor: {
-                'fancy': 'url(hand.cur), pointer'
-            },
-            columns: {
-                //'4xs': '14rem',
-            },
-        },
+  content: ['./src/**/*.{html,ts,css,scss}'],
+  darkMode: 'class', // or 'media' or 'class'
+  theme: {
+    extend: {
+      backgroundImage: {
+        mars: "url('assets/img/mars2_reduced.jpg')",
+        'earth-horizon': "url('assets/img/earth_horizon.jpg')",
+      },
     },
-    variants: {
-        extend: {},
-    },
-    plugins: [],
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
 };

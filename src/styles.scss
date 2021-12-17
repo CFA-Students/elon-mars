@@ -1,3 +1,39 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+// @include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$elon-mars-primary: mat.define-palette(mat.$amber-palette);
+$elon-mars-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$elon-mars-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$elon-mars-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $elon-mars-primary,
+      accent: $elon-mars-accent,
+      warn: $elon-mars-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($elon-mars-theme);
+
 /* Material import above */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
@@ -5,7 +41,113 @@
 
 /* You can add global styles to this file, and also import other style files */
 
+html,
 body {
+  @apply h-full;
+}
+
+body {
+  /* font-family: Roboto, 'Helvetica Neue', sans-serif; */
+  @apply m-0;
   @apply bg-slate-900;
   @apply text-slate-50;
+}
+
+img {
+  @apply rounded-lg;
+}
+
+@layer components {
+  .btn {
+    @apply rounded py-2 px-4 border font-bold;
+  }
+
+  .btn-dark {
+    @apply bg-transparent text-white hover:text-black hover:bg-white border-white;
+  }
+
+  .min-h-screen-minus-t {
+    min-height: calc(100vh - 4rem);
+  }
+
+  .wallpaper {
+    @apply bg-no-repeat bg-cover bg-left bg-fixed;
+  }
+
+  .flex-st {
+    @apply flex justify-start items-start;
+  }
+
+  .flex-sc {
+    @apply flex justify-start items-center;
+  }
+
+  .flex-se {
+    @apply flex justify-start items-end;
+  }
+
+  .flex-ct {
+    @apply flex justify-center items-start;
+  }
+
+  .flex-cc {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-ce {
+    @apply flex justify-center items-end;
+  }
+
+  .flex-et {
+    @apply flex justify-end items-start;
+  }
+
+  .flex-ec {
+    @apply flex justify-end items-center;
+  }
+
+  .flex-ee {
+    @apply flex justify-end items-end;
+  }
+
+  .flex-col-st {
+    @apply flex flex-col justify-start items-start;
+  }
+
+  .flex-col-sc {
+    @apply flex flex-col justify-start items-center;
+  }
+
+  .flex-col-se {
+    @apply flex flex-col justify-start items-end;
+  }
+
+  .flex-col-ct {
+    @apply flex flex-col justify-center items-start;
+  }
+
+  .flex-col-cc {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .flex-col-ce {
+    @apply flex flex-col justify-center items-end;
+  }
+
+  .flex-col-et {
+    @apply flex flex-col justify-end items-start;
+  }
+
+  .flex-col-ec {
+    @apply flex flex-col justify-end items-center;
+  }
+
+  .flex-col-ee {
+    @apply flex flex-col justify-end items-end;
+  }
+}
+
+.cdk-visually-hidden {
+  display: none;
+  visibility: hidden;
 }

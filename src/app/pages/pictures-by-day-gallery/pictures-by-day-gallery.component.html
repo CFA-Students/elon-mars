@@ -1,94 +1,16 @@
-<div class="papersBack mt-8"
-     data-desktop=""
-     style="background-image: url(assets/img/mars2.jpg);
-     visibility: inherit; opacity: 1;">
-
-    <div class="container">
-        <div class="container2">
-            <div class="card">
-                <div class="col-start-1 col-span-1">01
-                    <img class="w-96 aspect-video my-8" src="assets/img/mars2.jpg"/>
-                    <button class="btn btn-dark">Mise à jour</button>
-                    <button class="btn btn-dark">Galleries</button>
-                </div>
-            </div>
-        </div>
-        <div class="container2">
-            <div class="grid gap-x-8 gap-y-8 grid-cols-3 columns-auto">
-                <div class="card">
-                    <p class="text-center text-white | uppercase">So I started to walk into the water
-                        <img class="w-96 aspect-video my-8" src="assets/img/earth.png"/>
-                        <button class="btn btn-dark">Mise à jour</button>
-                        <button class="btn btn-dark">Galleries</button>
-                    </p>
-                </div>
-
-                <div class="card">
-                    <p class="text-center text-white | uppercase">So I started to walk into the water
-                        <img class="w-96 aspect-video my-8" src="assets/img/earth.png"/>
-                        <button class="btn btn-dark">Mise à jour</button>
-                        <button class="btn btn-dark">Galleries</button>
-                    </p>
-                </div>
-
-                <div class="card">
-                    <p class="text-center text-white | uppercase">So I started to walk into the water
-                        <img class="w-96 aspect-video my-8" src="assets/img/earth.png"/>
-                        <button class="btn btn-dark">Mise à jour</button>
-                        <button class="btn btn-dark">Galleries</button>
-                    </p>
-                </div>
-
-                <div class="card">
-                    <p class="text-center text-white | uppercase">So I started to walk into the water
-                        <img class="w-96 aspect-video my-8" src="assets/img/earth.png"/>
-                        <button class="btn btn-dark">Mise à jour</button>
-                        <button class="btn btn-dark">Galleries</button>
-                    </p>
-                </div>
-
-                <div class="card">
-                    <p class="text-center text-white | uppercase">So I started to walk into the water
-                        <img class="w-96 aspect-video my-8" src="assets/img/earth.png"/>
-                        <button class="btn btn-dark">Mise à jour</button>
-                        <button class="btn btn-dark">Galleries</button>
-                    </p>
-                </div>
-
-                <div class="card">
-                    <p class="text-center text-white | uppercase">So I started to walk into the water
-                        <img class="w-96 aspect-video my-8" src="assets/img/earth.png"/>
-                        <button class="btn btn-dark">Mise à jour</button>
-                        <button class="btn btn-dark">Galleries</button>
-                    </p>
-                </div>
-
-                <div class="card">
-                    <p class="text-center text-white | uppercase">So I started to walk into the water
-                        <img class="w-96 aspect-video my-8" src="assets/img/earth.png"/>
-                        <button class="btn btn-dark">Mise à jour</button>
-                        <button class="btn btn-dark">Galleries</button>
-                    </p>
-                </div>
-
-                <div class="card">
-                    <p class="text-center text-white | uppercase">So I started to walk into the water
-                        <img class="w-96 aspect-video my-8" src="assets/img/earth.png"/>
-                        <button class="btn btn-dark">Mise à jour</button>
-                        <button class="btn btn-dark">Galleries</button>
-                    </p>
-                </div>
-
-                <div class="card">
-                    <p class="text-center text-white | uppercase">So I started to walk into the water
-                        <img class="w-96 aspect-video my-8" src="assets/img/earth.png"/>
-                        <button class="btn btn-dark">Mise à jour</button>
-                        <button class="btn btn-dark">Galleries</button>
-                    </p>
-                </div>
-
-                <!-- ... -->
-            </div>
-        </div>
+<div class="w-full min-h-screen-minus-t wallpaper bg-mars py-8">
+  <div class="flex-cc mb-8">
+    <div
+      class="w-full sm:w-3/4 md:w-2/4 lg:w-2/5 xl:w-2/6 p-8 bg-amber-500 bg-opacity-5 rounded-xl shadow-2xl"
+    >
+      <mat-calendar
+        class="bg-amber-50 rounded-xl"
+        [(selected)]="selectedDate"
+        startView="month"
+        (selectedChange)="fetchPhotosPerPage()"
+        [maxDate]="today"
+      ></mat-calendar>
     </div>
+  </div>
+  <app-thumbnail-view [photos]="photos"></app-thumbnail-view>
 </div>

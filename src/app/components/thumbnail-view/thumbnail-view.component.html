@@ -1,0 +1,17 @@
+<div class="flex-cc">
+  <div
+    *ngIf="!isEmpty; else noPhotos"
+    class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 columns-auto"
+  >
+    <app-thumbnail-item
+      *ngFor="let photo of photos"
+      [photo]="photo"
+    ></app-thumbnail-item>
+  </div>
+  <ng-template #noPhotos>
+    <span
+      class="text-amber-100 text-lg font-bold"
+      [innerText]="emptyMessage"
+    ></span>
+  </ng-template>
+</div>

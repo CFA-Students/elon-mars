@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
 import { IMarsImagePhotoDto } from '@shared/models/mars-images-dto.model';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-thumbnail-view',
+  templateUrl: './thumbnail-view.component.html',
+  styleUrls: ['./thumbnail-view.component.scss'],
 })
-export class HomeComponent {
+export class ThumbnailViewComponent implements OnInit {
   @Input() photos: IMarsImagePhotoDto[] = [];
   @Input() emptyMessage = "Aucune photo n'a été trouvé pour cette date.";
 

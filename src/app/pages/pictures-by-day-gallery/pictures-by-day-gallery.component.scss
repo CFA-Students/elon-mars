@@ -1,23 +1,17 @@
-.container { @apply mx-auto px-2 py-2 }
-.container2 { @apply flex justify-center items-center py-10 }
+.logo {
+  @apply w-full h-full bg-no-repeat bg-cover bg-left bg-fixed;
+}
 
-.papersBack { @apply  w-full h-full bg-no-repeat bg-cover bg-left bg-fixed }
-.logo { @apply  w-full h-full bg-no-repeat bg-cover bg-left bg-fixed }
+.text {
+  @apply text-center;
+}
+.text2 {
+  @apply text-center text-white;
+}
 
-.text { @apply text-center }
-.text2 { @apply text-center text-white }
-
-img { @apply rounded-lg }
-
-//cursor: ;
-
-.btn { @apply rounded py-2 px-4 border font-bold; }
-.btn-dark { @apply bg-transparent text-white border-white; }
-.btn-dark:hover { @apply text-black bg-white; }
-
-.card { @apply max-w-full mx-auto flex p-8 bg-transparent rounded-xl shadow-2xl };
-.card2 { @apply max-w-full mx-auto flex p-2 bg-transparent rounded shadow-2xl };
-
-.div-size {
-  height: calc(100vh - 4rem)
+::ng-deep .mat-button-wrapper span {
+  @apply text-slate-900;
+}
+::ng-deep .mat-focus-indicator.mat-icon-button.mat-button-base {
+  @apply text-slate-900;
 }
