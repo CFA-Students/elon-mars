@@ -5,3 +5,7 @@
 .btn-like-hoverable {
   @apply hover:bg-opacity-100 hover:border-transparent;
 }
+
+.container {
+  @apply mx-auto p-10;
+}

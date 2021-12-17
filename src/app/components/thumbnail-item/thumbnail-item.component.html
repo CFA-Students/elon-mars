@@ -1,34 +1,36 @@
-<div
-  class="max-w-full flex-col mx-auto flex p-8 bg-amber-500 bg-opacity-5 rounded-lg shadow-2xl"
->
-  <div class="relative">
-    <img class="aspect-square w-full" [src]="photo.img_src" />
-    <span
-      class="absolute text-amber-50 left-0 top-0 font-bold bg-slate-500 bg-opacity-50 rounded-br-lg rounded-tl-lg text-sm p-1"
-      [innerText]="photo.id"
-    ></span>
-    <span
-      class="absolute text-amber-50 top-0 right-0 font-bold bg-slate-500 bg-opacity-50 rounded-bl-lg rounded-tr-lg text-sm p-1"
-      [innerText]="takenAt"
-    ></span>
-    <!-- <span
-      class="absolute text-amber-50 left-0 bottom-0 font-bold bg-slate-500 bg-opacity-50 rounded-bl-lg rounded-tr-lg text-sm p-1"
-      [innerText]="photo.sol + ' sols'"
-    ></span> -->
-    <span
-      class="absolute text-amber-50 bottom-0 right-0 font-bold bg-slate-500 bg-opacity-50 rounded-br-lg rounded-tl-lg text-sm p-1"
-      [innerText]="takenBy"
-    ></span>
-  </div>
-  <button
-    class="btn-like w-1/2 mt-4 mx-auto"
-    [ngClass]="{
+<div class="container">
+    <div
+            class="max-w-full flex-col mx-auto flex p-8 bg-amber-500 bg-opacity-5 rounded-lg shadow-2xl"
+    >
+        <div class="relative">
+            <img class="aspect-square w-full" [src]="photo.img_src"/>
+            <span
+                    class="absolute text-amber-50 left-0 top-0 font-bold bg-slate-500 bg-opacity-50 rounded-br-lg rounded-tl-lg text-sm p-1"
+                    [innerText]="photo.id"
+            ></span>
+            <span
+                    class="absolute text-amber-50 top-0 right-0 font-bold bg-slate-500 bg-opacity-50 rounded-bl-lg rounded-tr-lg text-sm p-1"
+                    [innerText]="takenAt"
+            ></span>
+            <!-- <span
+              class="absolute text-amber-50 left-0 bottom-0 font-bold bg-slate-500 bg-opacity-50 rounded-bl-lg rounded-tr-lg text-sm p-1"
+              [innerText]="photo.sol + ' sols'"
+            ></span> -->
+            <span
+                    class="absolute text-amber-50 bottom-0 right-0 font-bold bg-slate-500 bg-opacity-50 rounded-br-lg rounded-tl-lg text-sm p-1"
+                    [innerText]="takenBy"
+            ></span>
+        </div>
+        <button
+                class="btn-like w-1/2 mt-4 mx-auto"
+                [ngClass]="{
       'btn-like-hoverable': !isAlreadyAddedToFavorite,
       'cursor-not-allowed': isAlreadyAddedToFavorite
     }"
-    (click)="savePhoto()"
-    [disabled]="isAlreadyAddedToFavorite"
-  >
-    <fa-icon [icon]="saveIcon">Ajouter</fa-icon>
-  </button>
+                (click)="savePhoto()"
+                [disabled]="isAlreadyAddedToFavorite"
+        >
+            <fa-icon [icon]="saveIcon">Ajouter</fa-icon>
+        </button>
+    </div>
 </div>
