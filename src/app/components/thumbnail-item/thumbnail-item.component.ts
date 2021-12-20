@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { MarsImagesService } from '@pages/mars-images.service';
 
 import { IMarsImagePhotoDto } from '@shared/models/mars-images-dto.model';
@@ -12,6 +12,7 @@ import { IMarsImagePhotoDto } from '@shared/models/mars-images-dto.model';
 export class ThumbnailItemComponent {
   @Input() photo!: IMarsImagePhotoDto;
   saveIcon = faHeart;
+  savedIcon = faCheck;
 
   constructor(private readonly marsImagesService: MarsImagesService) {}
 
@@ -28,7 +29,14 @@ export class ThumbnailItemComponent {
   }
 
   savePhoto(): void {
+    if (this.isAlreadyAddedToFavorite)
+      console.warn('photo already added !');
+    else this.marsImagesService.savePhoto(this.photo);
+  }
+
+  removePhoto(): void {
     if (!this.isAlreadyAddedToFavorite)
-      this.marsImagesService.favoritePhotos.push(this.photo);
+      console.warn("photo doesn't exist !");
+    else this.marsImagesService.removePhoto(this.photo);
   }
 }
