@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { ResizeService } from './shared/services/resize.service';
 
@@ -19,7 +20,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { ThumbnailViewComponent } from './components/thumbnail-view/thumbnail-view.component';
 import { ThumbnailItemComponent } from './components/thumbnail-item/thumbnail-item.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { LocalStorageService } from './shared/local-storage.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  providers: [ResizeService, MatDatepickerModule],
+  providers: [ResizeService, MatDatepickerModule, LocalStorageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

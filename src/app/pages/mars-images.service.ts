@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
+import { LocalStorageService } from '../shared/local-storage.service';
 
 import {
   IMarsImagePhotoDto,
@@ -21,10 +22,29 @@ export class MarsImagesService {
 
   favoritePhotos: IMarsImagePhotoDto[] = [];
 
-  constructor(private readonly http: HttpClient) {}
+  readonly key = 'favoritePhotos';
+
+  constructor(
+    private readonly http: HttpClient,
+    private readonly lsService: LocalStorageService,
+  ) {
+    this.#initLS();
+  }
+
+  #initLS(): void {
+    // récupère les photos, pouvant etre undefined
+    const photos = this.lsService.getItem<IMarsImagePhotoDto[]>(this.key);
+    // si déjà existant, on l'assigne
+    if (photos) this.favoritePhotos = photos;
+    // si inexistant, on le crée
+    else this.lsService.setItem(this.key, []);
+  }
 
   checkIfAddedToFavorite(photo: IMarsImagePhotoDto): boolean {
-    return this.favoritePhotos.includes(photo);
+    const photos = this.lsService.getItem<IMarsImagePhotoDto[]>(this.key);
+    const exists = photos?.find((_photo) => _photo.id === photo.id);
+    if (exists) return true;
+    return false;
   }
 
   getImages({
@@ -35,27 +55,35 @@ export class MarsImagesService {
       this.#apiKey
     }`;
 
-    return this.http
-      .get<IMarsImagesDto>(`${this.#hostUrl}${this.#apiUrl}?${params}`, {
+    return this.http.get<IMarsImagesDto>(
+      `${this.#hostUrl}${this.#apiUrl}?${params}`,
+      {
         observe: 'response',
-      })
-      .pipe(
-        tap(
-          // En cas de réponse normale, on ne garde pas l'historique
-          () => {},
-          // Utiliser le localstorage pour stocker les modifications de favoris
-          (error: unknown) => {
-            console.error('HTTP ERROR | ' + error);
-          },
-        ),
+      },
+    );
+  }
+
+  savePhoto(photo: IMarsImagePhotoDto): void {
+    this.favoritePhotos.push(photo);
+    this.lsService.setItem(this.key, this.favoritePhotos);
+  }
+
+  removePhoto(photoToRemove: IMarsImagePhotoDto): void {
+    const photos = this.lsService.getItem<IMarsImagePhotoDto[]>(this.key);
+    if (photos) {
+      const newPhotos = photos.filter(
+        (photo) => photo.id !== photoToRemove.id,
       );
+      this.favoritePhotos = newPhotos;
+      this.lsService.setItem(this.key, newPhotos);
+    }
   }
 
   dateToStringInApiFormat(date: Date): string {
     const year = date.getFullYear().toString();
     const month = (date.getMonth() + 1).toString();
     const day = date.getDate().toString();
-    console.warn(year, month, day);
+
     return `${year}-${month}-${day}`;
   }
 }
