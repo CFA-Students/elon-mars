@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IMarsImagePhotoDto } from '@shared/models/mars-images-dto.model';
+import {
+  IMarsImagePhotoDto,
+  IMarsImagesDto,
+} from '@shared/models/mars-images-dto.model';
 
 import { MarsImagesService } from '../mars-images.service';
 
@@ -28,9 +31,9 @@ export class PicturesByDayGalleryComponent implements OnInit {
 
     this.marsImagesService
       .getImages({ page, earthDate })
-      .subscribe(({ body }) => {
-        if (body) this.photos = body.photos;
-        else console.error('body null');
+      .subscribe((dto: IMarsImagesDto) => {
+        if (dto) this.photos = dto.photos;
+        else console.error('dto null');
       });
   }
 }
